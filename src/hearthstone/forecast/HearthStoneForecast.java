@@ -8,7 +8,7 @@ package hearthstone.forecast;
 
 /**
  *
- * @author johnson_849323
+ * @author johnson_849323, Bates_844187
  */
 public class HearthStoneForecast {
 
