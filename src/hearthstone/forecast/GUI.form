@@ -89,9 +89,6 @@
             <Component class="javax.swing.JLabel" name="Card0_0">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="1" name="http://hydra-media.cursecdn.com/hearthstone.gamepedia.com/thumb/5/5a/Ben_Brode(701).png/200px-Ben_Brode(701).png?version=1c2939ae0d84961194c264bf0aa7c446"/>
-                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[0, 0]"/>
                 </Property>

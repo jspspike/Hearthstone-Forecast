@@ -3,12 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package hearthstone.forecast;
 
+import static com.sun.webkit.graphics.WCImage.getImage;
+import java.awt.*;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.Image;
+import static java.awt.Image.SCALE_DEFAULT;
+import java.awt.image.*;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -21,20 +30,36 @@ public class GUI extends javax.swing.JFrame {
      */
     int height = 0;
     Image car;
-    
-    
-    public GUI() {
+
+    public GUI() throws IOException {
         initComponents();
-        
-        
+
         height = Main.getHeight();
         Mana0.setBackground(Color.red);
+
+        ImageIcon icon = new ImageIcon("http://media-hearth.cursecdn.com/avatars/147/957/264.png");
+
+        URL ur = new URL("C:\\Users\\bates_844187\\Desktop\\Nerub.png");
+
         
-        
-        //ImageIcon icon = createImageIcon("http://i920.photobucket.com/albums/ad43/Mails-Prowers7070a/ChuckNorrisHearthstoneCard.png","");
-        //Card0_0 = new JLabel(icon);
-                //car = Card0_0.getIcon().getImage();
-        Mana0.setSize((int)(8.25 * (height / 100 )), 1080);
+        try {
+        BufferedImage image = ImageIO.read(new File("Nerub.png"));
+        }
+        catch (IOException e) {    
+        }
+        BufferedImage resizedImage =resize (image,100,100);
+        icon.setImage(resizedImage);
+        Card0_0 = new JLabel(icon);
+        Mana0.setSize((int) (8.25 * (height / 100)), 1080);
+    }
+
+    public static BufferedImage resize(BufferedImage image, int width, int height) {
+        BufferedImage bi = new BufferedImage(width, height, BufferedImage.TRANSLUCENT);
+        Graphics2D g2d = (Graphics2D) bi.createGraphics();
+        g2d.addRenderingHints(new RenderingHints(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY));
+        g2d.drawImage(image, 0, 0, width, height, null);
+        g2d.dispose();
+        return bi;
     }
 
     /**
@@ -53,17 +78,6 @@ public class GUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Card0_0.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Card0_0.setIcon(new javax.swing.JLabel() {
-            public javax.swing.Icon getIcon() {
-                try {
-                    return new javax.swing.ImageIcon(
-                        new java.net.URL("http://hydra-media.cursecdn.com/hearthstone.gamepedia.com/thumb/5/5a/Ben_Brode(701).png/200px-Ben_Brode(701).png?version=1c2939ae0d84961194c264bf0aa7c446")
-                    );
-                } catch (java.net.MalformedURLException e) {
-                }
-                return null;
-            }
-        }.getIcon());
         Card0_0.setMaximumSize(new java.awt.Dimension(0, 0));
         Card0_0.setMinimumSize(new java.awt.Dimension(0, 0));
         Card0_0.setPreferredSize(new java.awt.Dimension(200, 300));
