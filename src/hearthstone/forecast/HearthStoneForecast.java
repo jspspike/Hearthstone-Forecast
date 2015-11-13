@@ -22,12 +22,7 @@ public class HearthStoneForecast {
      */
     public static void main(String[] args) throws UnirestException {
         // TODO code application logic here
-        HttpResponse<JsonNode> response = Unirest.get("https://omgvamp-hearthstone-v1.p.mashape.com/cards/EX1_100")
-            .header("X-Mashape-Key", "zjUPjPL76tmshBXkcxSXjbR1aabap15qjDgjsn7imXJUvuayT2")
-            .header("Accept", "application/json")
-            .asJson();
-        
-        System.out.println(response);
+        Card card = new Card("")
     }
     
 }
