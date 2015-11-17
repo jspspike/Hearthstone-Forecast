@@ -17,7 +17,7 @@ import java.util.Scanner;
  */
 public class Card {
     private String name;
-    private String imgLing;
+    private String imgLink;
     
     private int score;
     
@@ -32,23 +32,41 @@ public class Card {
         String data = response.getBody().toString();
         int sindex = 0;
         int eindex = 0;
-        
-        for (int i = 0; i < data.length(); i++) {
-            if (data.substring(i, i + 6).equals(",/name")) {
+
+
+        for (int i = 0; i < data.length() - 9; i++) {
+            if (data.substring(i, i + 6).equals(",\"name")) {
                 sindex = i + 9;
             }
             
-            if (data.substring(i, i + 5).equals(",/img")) {
+            if (data.substring(i, i + 5).equals(",\"img")) {
+                eindex = i - 1;
+            }
+        }
+         
+        name = data.substring(sindex, eindex);
+        
+        sindex = 0;
+        eindex = 0;
+        
+        for (int i = 0; i < data.length() - 7; i++) {
+            if (data.substring(i, i + 6).equals("img\":\"")) {
+                sindex = i + 6;
+            }
+            
+            if (data.substring(i, i + 6).equals(",\"cost")) {
                 eindex = i - 1;
             }
         }
         
-        name = data.substring(sindex, eindex);
-        
+        imgLink = data.substring (sindex, eindex);
     }
     
     public String getName() {
         return name;
     }
     
+    public String getImage() {
+        return imgLink;
+    }
 }

@@ -22,7 +22,9 @@ public class HearthStoneForecast {
      */
     public static void main(String[] args) throws UnirestException {
         // TODO code application logic here
-        Card card = new Card("")
+        Card card = new Card("GVG_110");
+        System.out.println(card.getName());
+        System.out.println(card.getImage());
     }
     
 }
