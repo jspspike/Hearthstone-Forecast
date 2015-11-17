@@ -14,6 +14,7 @@ import static java.awt.Image.SCALE_DEFAULT;
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -41,21 +42,22 @@ public class GUI extends javax.swing.JFrame {
         
         BufferedImage image = null;
         height = Main.getHeight();
-        Mana0.setBackground(Color.red);
+        Mana0.setBackground(Color.black);
         
-        File sourceimage = new File("C://Users/bates_844187/Desktop/Nerub.png");
-        image = ImageIO.read(sourceimage);
-        ImageIcon icon = new ImageIcon(image);
-        Card0_0.setIcon(icon);
-        BufferedImage resizedImage = resize (image,250,250);
-        icon.setImage(resizedImage);
+        ResizeSet("http://media-hearth.cursecdn.com/avatars/149/110/12182.gif", Card0_0, (int) (1 * 14 * (height / 100)), 100);
         
-
-        Mana0.setSize((int) (8.25 * (height / 100)), 1080);
+        System.out.println(height);
+        //Mana0.setPreferredSize(new Dimension(500, 500));
+        Mana0.setPreferredSize(new Dimension(1080, (int) (14 * (height / 100))));
     }
     
-    public void ResizeSet(){
-        
+    public void ResizeSet(String link, JLabel label, int h, int w) throws MalformedURLException, IOException{
+        URL url = new URL(link);
+        BufferedImage image = ImageIO.read(url);
+        ImageIcon icon = new ImageIcon(image);
+        label.setIcon(icon);
+        BufferedImage resizedImage = resize (image,w,h);
+        icon.setImage(resizedImage);
     }
     
 //Component from the internet
@@ -83,6 +85,8 @@ public class GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        Main.setPreferredSize(new java.awt.Dimension(1080, 1080));
+
         Mana0.setBackground(new java.awt.Color(200, 13, 4));
         Mana0.setForeground(new java.awt.Color(5, 76, 4));
 
@@ -94,13 +98,12 @@ public class GUI extends javax.swing.JFrame {
         Mana0Layout.setHorizontalGroup(
             Mana0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Mana0Layout.createSequentialGroup()
-                .addGap(104, 104, 104)
                 .addComponent(Card0_0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 104, Short.MAX_VALUE))
         );
         Mana0Layout.setVerticalGroup(
             Mana0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Mana0Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Mana0Layout.createSequentialGroup()
                 .addComponent(Card0_0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -112,31 +115,30 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(MainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Mana0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(379, Short.MAX_VALUE))
         );
         MainLayout.setVerticalGroup(
             MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Mana0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(769, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Main, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(379, Short.MAX_VALUE))
+                .addComponent(Main, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Main, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(330, 330, 330))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Main, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
