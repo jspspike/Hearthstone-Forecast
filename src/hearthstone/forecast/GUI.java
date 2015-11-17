@@ -31,28 +31,34 @@ public class GUI extends javax.swing.JFrame {
     int height = 0;
     Image car;
 
-    public GUI() throws IOException {
-        initComponents();
-
-        height = Main.getHeight();
-        Mana0.setBackground(Color.red);
-
-        ImageIcon icon = new ImageIcon("http://media-hearth.cursecdn.com/avatars/147/957/264.png");
-
-        URL ur = new URL("C:\\Users\\bates_844187\\Desktop\\Nerub.png");
-
-        
-        try {
-        BufferedImage image = ImageIO.read(new File("Nerub.png"));
-        }
-        catch (IOException e) {    
-        }
-        BufferedImage resizedImage =resize (image,100,100);
-        icon.setImage(resizedImage);
-        Card0_0 = new JLabel(icon);
-        Mana0.setSize((int) (8.25 * (height / 100)), 1080);
+    public GUI(boolean no)
+    {
+        boolean yes = no;
     }
 
+    public GUI() throws IOException {
+        initComponents();
+        
+        BufferedImage image = null;
+        height = Main.getHeight();
+        Mana0.setBackground(Color.red);
+        
+        File sourceimage = new File("C://Users/bates_844187/Desktop/Nerub.png");
+        image = ImageIO.read(sourceimage);
+        ImageIcon icon = new ImageIcon(image);
+        Card0_0.setIcon(icon);
+        BufferedImage resizedImage = resize (image,250,250);
+        icon.setImage(resizedImage);
+        
+
+        Mana0.setSize((int) (8.25 * (height / 100)), 1080);
+    }
+    
+    public void ResizeSet(){
+        
+    }
+    
+//Component from the internet
     public static BufferedImage resize(BufferedImage image, int width, int height) {
         BufferedImage bi = new BufferedImage(width, height, BufferedImage.TRANSLUCENT);
         Graphics2D g2d = (Graphics2D) bi.createGraphics();
@@ -77,9 +83,10 @@ public class GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        Mana0.setBackground(new java.awt.Color(200, 13, 4));
+        Mana0.setForeground(new java.awt.Color(5, 76, 4));
+
         Card0_0.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Card0_0.setMaximumSize(new java.awt.Dimension(0, 0));
-        Card0_0.setMinimumSize(new java.awt.Dimension(0, 0));
         Card0_0.setPreferredSize(new java.awt.Dimension(200, 300));
 
         javax.swing.GroupLayout Mana0Layout = new javax.swing.GroupLayout(Mana0);
@@ -164,8 +171,14 @@ public class GUI extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new GUI().setVisible(true);
+                try{
+                    GUI a = new GUI();
+                    new GUI().setVisible(true);
+                }
+                catch(IOException e){System.out.println(e);}
+                
             }
         });
     }
