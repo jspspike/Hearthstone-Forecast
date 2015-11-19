@@ -10,18 +10,17 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import java.util.Scanner;
 /**
  *
  * @author johnson_849323
  */
 public class Card {
-    private String name;
-    private String imgLink;
+    private final String name;
+    private final String imgLink;
+    int frequncy;
     
-    private int score;
     
-    public Card(String id) throws UnirestException {
+    public Card(String id, int frequency) throws UnirestException {
         String ID = id;
         HttpResponse<JsonNode> response = Unirest.get("https://omgvamp-hearthstone-v1.p.mashape.com/cards/" + ID)
         .header("X-Mashape-Key", "zjUPjPL76tmshBXkcxSXjbR1aabap15qjDgjsn7imXJUvuayT2")
@@ -60,6 +59,7 @@ public class Card {
         }
         
         imgLink = data.substring (sindex, eindex);
+        this.frequncy = frequency;
     }
     
     public String getName() {

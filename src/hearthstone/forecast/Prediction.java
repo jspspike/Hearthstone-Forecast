@@ -6,26 +6,20 @@
 
 package hearthstone.forecast;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 /**
  *
  * @author johnson_849323
  */
+
+
 public class Prediction {
-    public Prediction() throws UnirestException{
-        
-    }
     
-    public static void main(String[] args) throws UnirestException {
-        HttpResponse<JsonNode> response = Unirest.get("https://omgvamp-hearthstone-v1.p.mashape.com/cards/EX1_100")
-.header("X-Mashape-Key", "zjUPjPL76tmshBXkcxSXjbR1aabap15qjDgjsn7imXJUvuayT2")
-.header("Accept", "application/json")
-.asJson();
+    Card[][] disp;
+    
+    public Prediction() throws UnirestException{
+        disp = new Card[10][8];
         
-        System.out.println(response.getBody());
     }
 }

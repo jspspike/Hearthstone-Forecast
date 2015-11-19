@@ -6,9 +6,6 @@
 
 package hearthstone.forecast;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 /**
@@ -19,10 +16,11 @@ public class HearthStoneForecast {
 
     /**
      * @param args the command line arguments
+     * @throws com.mashape.unirest.http.exceptions.UnirestException
      */
     public static void main(String[] args) throws UnirestException {
         // TODO code application logic here
-        Card card = new Card("GVG_110");
+        Card card = new Card("GVG_110", 1);
         System.out.println(card.getName());
         System.out.println(card.getImage());
     }
