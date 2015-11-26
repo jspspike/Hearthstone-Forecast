@@ -23,6 +23,7 @@ public class HearthStoneForecast {
         Card card = new Card("GVG_110", 1);
         System.out.println(card.getName());
         System.out.println(card.getImage());
+        System.out.println(card.getMana());
     }
     
 }

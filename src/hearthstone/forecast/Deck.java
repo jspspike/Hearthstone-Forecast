@@ -26,6 +26,10 @@ public class Deck {
     public Deck(String name) throws UnirestException {
         this.name = name;
         
+        if (name.equals("")) {
+            popularity = 0;
+        }
+        
         if (name.equals("Mage-Spring-ESL")) {
             popularity = 5;
             cards.add(new Card("CS2_031", 2));
@@ -53,6 +57,15 @@ public class Deck {
     
     
     public int getScore(Card[] played) {
-        return 0;
+        for (int i = 0; i < played.length; i++) {
+            for (int j = 0; j < cards.size(); j++) {
+                if (played[i].getID().equals(cards.get(j).getID())) {
+                    totalscore += cards.get(i).getFreq();                  
+                }
+            }
+        }
+        
+        totalscore *= popularity;
+        return totalscore;
     }
 }
