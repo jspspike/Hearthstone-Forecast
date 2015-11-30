@@ -30,13 +30,15 @@ public class Prediction {
     
     private void addDecks() throws UnirestException {
         decks.add(new Deck("Mage-Spring-ESL"));
+        decks.add(new Deck("Legend-Warsong"));
+        decks.add(new Deck("Miracle-Rouge"));
     }
     
     public void updateFreq() throws UnirestException {
         Deck most = new Deck("");
         for (Deck deck : decks) {
             if (deck.getScore(played) > most.getScore(played)) {
-                most = deck;
+                most = new Deck(deck);
             }
         }
         
