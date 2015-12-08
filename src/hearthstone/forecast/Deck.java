@@ -18,16 +18,16 @@ import java.util.ArrayList;
 
 public class Deck {
     ArrayList<Card> cards = new ArrayList<>();
-    String name;
+    String name = "";
     int popularity;
     int totalscore = 0;
     
     
     public Deck(Deck deck) {
-        deck.cards = this.cards;
-        deck.popularity = this.popularity;
-        deck.totalscore = this.totalscore;
-        deck.name = this.name;
+        this.cards = deck.cards;
+        this.popularity = deck.popularity;
+        this.totalscore = deck.totalscore;
+        this.name = deck.name;
         
     }
     
@@ -121,10 +121,13 @@ public class Deck {
     
     
     
-    public int getScore(Card[] played) {
-        for (int i = 0; i < played.length; i++) {
+    public int getScore(ArrayList<Card> played) {
+        if (name.equals(""))
+            return 0;
+        
+        for (int i = 0; i < played.size(); i++) {
             for (int j = 0; j < cards.size(); j++) {
-                if (played[i].getID().equals(cards.get(j).getID())) {
+                if (played.get(i).getID().equals(cards.get(j).getID())) {
                     totalscore += cards.get(i).getFreq();                  
                 }
             }
@@ -133,4 +136,16 @@ public class Deck {
         totalscore *= popularity;
         return totalscore;
     }
+    
+    @Override
+    public String toString() {
+        String output = "";
+        for (int i = 0; i < cards.size(); i++) {
+            output += cards.get(i).getName() + " ";
+        }
+        
+        return output;
+    }
 }
+
+
