@@ -7,6 +7,7 @@
 package hearthstone.forecast;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,10 +21,18 @@ public class HearthStoneForecast {
      */
     public static void main(String[] args) throws UnirestException {
         // TODO code application logic here
-        Card card = new Card("GVG_110", 1);
-        System.out.println(card.getName());
-        System.out.println(card.getImage());
-        System.out.println(card.getMana());
+        long start = System.nanoTime();
+        ArrayList<Card> swag = new ArrayList<>();
+        swag.add(new Card("CS2_031", 1));
+        swag.add(new Card("EX1_012", 1));
+        
+        
+        Prediction predict = new Prediction(swag);
+        
+        System.out.println(predict);
+        long end = System.nanoTime();
+        System.out.println("Time elapsed: " + (((double)(end - start))/1000000000));
+        
     }
     
 }
