@@ -42,6 +42,7 @@ public class GUI extends javax.swing.JFrame {
     public GUI() throws IOException {
         initComponents();
 
+        
         BufferedImage image = null;
         height = Main.getHeight();
         
@@ -49,47 +50,60 @@ public class GUI extends javax.swing.JFrame {
         
         JLabel[][] cards = new JLabel[8][10];
         
-
-        
         for(int i = 0; i < 8;i++){
             for(int h = 0; h < 10;h++){
-                cards[i][h] = new JLabel("[" + i + "][" + h + "]");
+                cards[i][h] = new JLabel();
+                cards[i][h].setPreferredSize(new Dimension(50,50));
             }
         }
         
         for(int i = 0; i < 8;i++)
         {
             manaP[i] = new JPanel();
-            manaP[i].setPreferredSize(new Dimension(1080, (int) (14 * (height / 100))));
+            manaP[i].setLayout(new BorderLayout());
+            manaP[i].setPreferredSize(new Dimension(1080, 200));
+            manaP[i].setVisible(true);
         }
         
         manaP[0].setBackground(Color.red);
+        
+        GridLayout gridY = new GridLayout(8,1);
+        GridLayout gridX = new GridLayout(1,10);
+        //Main.setLayout(new BorderLayout());
+        Main.setLayout(gridY);
         
         //loops through / adds rows
         for(int i = 0; i < 8;i++){        
             
             for(int h = 0; h < 10;h++){
-               manaP[i].add(cards[i][h]);
-               manaP[i].setMinimumSize(new Dimension(1080, (int) (14 * (height / 100))));
-               System.out.print(manaP[i].getY());
+               //manaP[i].add(cards[i][h]);
+                manaP[i].setLayout(gridX);
+                manaP[i].add(cards[i][h]);
+               //manaP[i].add(cards[i][h], BorderLayout.EAST);
+               //System.out.print(manaP[i].getY());
             }
             
-            Main.add(manaP[i]);
+            Main.add(manaP[i], BorderLayout.SOUTH);
         }
         
-        manaP[0].setVisible(true);
+        //manaP[0].setVisible(true);
         
         for(int i = 0; i < 8;i++){
             for(int h = 0; h < 10;h++){
-                System.out.print(cards[i][h].getY());
+                ResizeSet("http://wow.zamimg.com/images/hearthstone/cards/enus/original/EX1_066.png", cards[i][h], (int) (1 * 16 * (height / 100)), (int) (.66 * (1 * 16 * (height / 100))));
             }
         }
         
         
-        //ResizeSet("http://wow.zamimg.com/images/hearthstone/cards/enus/original/EX1_066.png", cards[0][0], (int) (1 * 15 * (height / 100)), (int) (.66 * (1 * 15 * (height / 100))));
+   
         
+        
+        ResizeSet("http://wow.zamimg.com/images/hearthstone/cards/enus/original/EX1_066.png", cards[7][9], (int) (1 * 15 * (height / 100)), (int) (.66 * (1 * 15 * (height / 100))));
+        ResizeSet("http://wow.zamimg.com/images/hearthstone/cards/enus/original/GVG_110.png", cards[0][0], (int) (1 * 15 * (height / 100)), (int) (.66 * (1 * 15 * (height / 100))));
+        ResizeSet("http://wow.zamimg.com/images/hearthstone/cards/enus/original/EX1_066.png", cards[2][5], (int) (1 * 15 * (height / 100)), (int) (.66 * (1 * 15 * (height / 100))));
         //Mana0.setPreferredSize(new Dimension(500, 500));
         //Mana0.setPreferredSize(new Dimension(1080, (int) (14 * (height / 100))));
+        
     }
     
     public void ResizeSet(String link, JLabel label, int h, int w) throws MalformedURLException, IOException{
@@ -131,27 +145,28 @@ public class GUI extends javax.swing.JFrame {
         Main.setLayout(MainLayout);
         MainLayout.setHorizontalGroup(
             MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 693, Short.MAX_VALUE)
+            .addGap(0, 980, Short.MAX_VALUE)
         );
         MainLayout.setVerticalGroup(
             MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1080, Short.MAX_VALUE)
+            .addGap(0, 941, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Main, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
+                .addComponent(Main, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(Main, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Main, javax.swing.GroupLayout.PREFERRED_SIZE, 941, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(139, 139, 139))
         );
 
         pack();
