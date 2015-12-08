@@ -100,5 +100,8 @@ public class Card {
         return ID;
     }
     
-
+    @Override
+    public String toString() {
+        return getName();
+    }
 }
