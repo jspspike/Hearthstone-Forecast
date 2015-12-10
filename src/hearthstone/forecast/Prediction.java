@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public final class Prediction {
     
     private ArrayList<Card> played;
-    private final Card[][] disp;
+    Card[][] disp;
     private final ArrayList<Deck> decks = new ArrayList<>();
     
     public Prediction() throws UnirestException{

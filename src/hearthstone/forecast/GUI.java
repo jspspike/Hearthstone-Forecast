@@ -5,6 +5,7 @@
  */
 package hearthstone.forecast;
 
+import com.mashape.unirest.http.exceptions.UnirestException;
 import static com.sun.webkit.graphics.WCImage.getImage;
 import java.awt.*;
 import java.awt.Color;
@@ -17,6 +18,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -39,7 +42,7 @@ public class GUI extends javax.swing.JFrame {
         boolean yes = no;
     }
 
-    public GUI() throws IOException {
+    public GUI() throws IOException, UnirestException {
         initComponents();
 
         
@@ -65,7 +68,6 @@ public class GUI extends javax.swing.JFrame {
             manaP[i].setVisible(true);
         }
         
-        manaP[0].setBackground(Color.red);
         
         GridLayout gridY = new GridLayout(8,1);
         GridLayout gridX = new GridLayout(1,10);
@@ -88,21 +90,41 @@ public class GUI extends javax.swing.JFrame {
         
         //manaP[0].setVisible(true);
         
+        ArrayList<Card> swag = new ArrayList<>();
+        swag.add(new Card("CS2_031", 1));
+        swag.add(new Card("EX1_012", 1));
+        
+        
+        Prediction predict = new Prediction(swag);
+        
+        
+        for (int i = 0; i < 8; i++){
+            for (int j = 0; j < 10; j++) {
+                System.out.println(predict.disp[i][j]);
+            }
+        }
+        
         for(int i = 0; i < 8;i++){
             for(int h = 0; h < 10;h++){
-                ResizeSet("http://wow.zamimg.com/images/hearthstone/cards/enus/original/EX1_066.png", cards[i][h], (int) (1 * 16 * (height / 100)), (int) (.66 * (1 * 16 * (height / 100))));
+                if(predict.disp[i][h] != null){
+                ResizeSet(predict.disp[i][h].getImage(), cards[i][h], (int) (1 * 16 * (height / 100)), (int) (.66 * (1 * 16 * (height / 100))));
+                }
             }
         }
         
         
    
         
-        
+        /*
         ResizeSet("http://wow.zamimg.com/images/hearthstone/cards/enus/original/EX1_066.png", cards[7][9], (int) (1 * 15 * (height / 100)), (int) (.66 * (1 * 15 * (height / 100))));
         ResizeSet("http://wow.zamimg.com/images/hearthstone/cards/enus/original/GVG_110.png", cards[0][0], (int) (1 * 15 * (height / 100)), (int) (.66 * (1 * 15 * (height / 100))));
         ResizeSet("http://wow.zamimg.com/images/hearthstone/cards/enus/original/EX1_066.png", cards[2][5], (int) (1 * 15 * (height / 100)), (int) (.66 * (1 * 15 * (height / 100))));
+        */
         //Mana0.setPreferredSize(new Dimension(500, 500));
         //Mana0.setPreferredSize(new Dimension(1080, (int) (14 * (height / 100))));
+        
+        
+        //predict.disp[0][0].getImage();
         
     }
     
@@ -207,7 +229,9 @@ public class GUI extends javax.swing.JFrame {
                     GUI a = new GUI();
                     new GUI().setVisible(true);
                 }
-                catch(IOException e){System.out.println(e);}
+                catch(IOException e){System.out.println(e);} catch (UnirestException ex) {
+                    Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             }
         });
