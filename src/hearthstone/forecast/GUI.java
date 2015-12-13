@@ -43,8 +43,9 @@ public class GUI extends javax.swing.JFrame {
     }
 
     public GUI() throws IOException, UnirestException {
-        initComponents();
 
+        initComponents();
+        
         
         BufferedImage image = null;
         height = Main.getHeight();
@@ -113,7 +114,7 @@ public class GUI extends javax.swing.JFrame {
         }
         
         
-   
+
         
         /*
         ResizeSet("http://wow.zamimg.com/images/hearthstone/cards/enus/original/EX1_066.png", cards[7][9], (int) (1 * 15 * (height / 100)), (int) (.66 * (1 * 15 * (height / 100))));
@@ -225,6 +226,7 @@ public class GUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                long start = System.nanoTime();
                 try{
                     GUI a = new GUI();
                     new GUI().setVisible(true);
@@ -232,7 +234,8 @@ public class GUI extends javax.swing.JFrame {
                 catch(IOException e){System.out.println(e);} catch (UnirestException ex) {
                     Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+                        long end = System.nanoTime();
+                        System.out.println("Time elapsed: " + (((double)(end - start))/1000000000));
             }
         });
     }
