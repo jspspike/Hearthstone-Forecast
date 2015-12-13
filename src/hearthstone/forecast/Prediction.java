@@ -57,9 +57,16 @@ public final class Prediction {
         for (int i = 0; i < disp.length; i++) {
             for (int j = 0; j < disp[i].length; j++) {
                 for (int k = most.cards.size() - 1; k > 0; k--) {
-                    if (most.cards.get(k).getMana() == i + 1) {
+                    if (most.cards.get(k).getMana() > 7 && i == 7)
+                    {
                         disp[i][j] = most.cards.get(k);
-                        //gmost.cards.remove(k);
+                        System.out.println(most.cards.remove(k));
+                        break;
+                    }
+                    if(most.cards.get(k).getMana() == i) {
+                        disp[i][j] = most.cards.get(k);
+                        System.out.println(most.cards.remove(k));
+                        break;
                     }
                 }
             }
