@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/U:/My%20Documents/GitHub/Hearthstone-Forecast/src/hearthstone/forecast/GUI.java</file>
-            <file>file:/U:/My%20Documents/GitHub/Hearthstone-Forecast/src/hearthstone/forecast/HearthStoneForecast.java</file>
+            <file>file:/E:/Git_Repositories/Hearthstone-Forecast/src/hearthstone/forecast/GUI.java</file>
+            <file>file:/E:/Git_Repositories/Hearthstone-Forecast/src/hearthstone/forecast/Prediction.java</file>
+            <file>file:/E:/Git_Repositories/Hearthstone-Forecast/src/hearthstone/forecast/HearthStoneForecast.java</file>
+            <file>file:/E:/Git_Repositories/Hearthstone-Forecast/src/hearthstone/forecast/Card.java</file>
         </group>
     </open-files>
 </project-private>
