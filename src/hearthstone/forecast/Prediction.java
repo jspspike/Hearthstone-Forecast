@@ -53,6 +53,14 @@ public final class Prediction {
         }
 
         System.out.println("Cards " + most);
+        for (int i = most.cards.size() - 1; i > 0; i--) {
+            for (int j = 0; j < played.size(); j++) {
+                if (most.cards.get(i).ID.equals(played.get(j).ID) && most.cards.get(i).frequncy == 1) {
+                    most.cards.remove(i);
+                    break;
+                }
+            }
+        }
         
         for (int i = 0; i < disp.length; i++) {
             for (int j = 0; j < disp[i].length; j++) {
