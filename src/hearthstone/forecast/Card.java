@@ -15,13 +15,13 @@ import com.mashape.unirest.http.exceptions.UnirestException;
  * @author johnson_849323
  */
 public class Card {
-    private final String name;
-    private final String imgLink;
-    int frequncy;
-    int cost;
-    String ID;
+    private final String name; //Name of the Card
+    private final String imgLink; //Link to the Card Image
+    int frequncy; //How often the card is played
+    int cost; //The mana cost of the card
+    String ID; //The Hearthstone ID of the card
     
-    
+    //Constructor taht takes the string ID 
     public Card(String id, int frequency) throws UnirestException {
         ID = id;
         HttpResponse<JsonNode> response = Unirest.get("https://omgvamp-hearthstone-v1.p.mashape.com/cards/" + ID)
