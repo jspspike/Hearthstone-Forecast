@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hearthstone.forecast;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -16,15 +11,16 @@ import java.util.logging.Logger;
  */
 public class AddCard extends javax.swing.JFrame {
 
-    GUI gui;
+    GUI gui; //Instantiate the GUI Object
     
     /**
      * Creates new form AddCard
      */
     public AddCard() throws IOException, UnirestException {
         initComponents();
-        gui = new GUI();
-        gui.setVisible(true);
+        
+        gui = new GUI(); //Creates GUI Program
+        gui.setVisible(true); //Display GUI programs
     }
 
     /**
@@ -66,11 +62,12 @@ public class AddCard extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //When the update button is pressed it will go through the files and change the display
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         try {
-            gui.updateCards();
-            gui.setVisible(true);
+            gui.updateCards(); //Updates based from the text File
+            gui.setVisible(true); //Sets the the Card display to appear
         } catch (UnirestException ex) {
             Logger.getLogger(AddCard.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
