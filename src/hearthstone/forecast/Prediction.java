@@ -47,8 +47,7 @@ public final class Prediction {
         Deck most = new Deck("");
         for (Deck deck : decks) {
             if (deck.getScore(played) > most.getScore(played)) {
-                most = new Deck(deck);
-                
+                most = new Deck(deck);       
             }   
         }
 
@@ -79,8 +78,6 @@ public final class Prediction {
                 }
             }
         }
-        
-        
     }
     
     @Override
