@@ -23,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -45,6 +46,15 @@ public class GUI extends javax.swing.JFrame {
 
     public GUI() throws IOException, UnirestException {
 
+        JFileChooser kfc = new JFileChooser();
+
+        if (kfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+
+                    Listener listen = new Listener( "" + kfc.getCurrentDirectory());
+                    System.out.println( "" + kfc.getCurrentDirectory());
+        }
+        
+        
         initComponents();
         
         BufferedImage image = null;
@@ -111,22 +121,13 @@ public class GUI extends javax.swing.JFrame {
         }
         //manaP[0].setVisible(true);
         
+        /*
         ArrayList<Card> swag = new ArrayList<>();
         swag.add(new Card("CS2_031", 1));
         swag.add(new Card("EX1_012", 1));
         
         
-        Prediction predict = new Prediction(swag);
-        
-        /*
-        for (int i = 0; i < 8; i++){
-            for (int j = 0; j < 10; j++) {
-                System.out.println(predict.disp[i][j]);
-            }
-        }
-        */
-        
-        
+        // WE NEED THIS WHEN THE LIBRARYS WORK ! Prediction predict = new Prediction(swag);
         
         for(int i = 0; i < 8;i++){
             for(int h = 0; h < 10;h++){
@@ -135,7 +136,7 @@ public class GUI extends javax.swing.JFrame {
                 }
             }
         }
-        
+        */
         
         //ImageIcon manaNum1 = new ImageIcon("assets/1.png");
         //cards[0][0].setIcon(manaNum1);
