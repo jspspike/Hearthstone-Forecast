@@ -45,6 +45,7 @@ public final class Prediction {
         decks.add(new Deck("Mage-Spring-ESL"));
         decks.add(new Deck("Legend-Warsong"));
         decks.add(new Deck("Miracle-Rouge"));
+        decks.add(new Deck("Default-Mage"));
     }
     
     private void updateFreq() throws UnirestException {
@@ -71,10 +72,12 @@ public final class Prediction {
                     if (most.cards.get(k).getMana() > 7 && i == 7)
                     {
                         disp[i][j] = most.cards.get(k);
+                        most.cards.remove(k);
                         break;
                     }
                     if(most.cards.get(k).getMana() == i) {
                         disp[i][j] = most.cards.get(k);
+                        most.cards.remove(k);
                         break;
                     }
                 }

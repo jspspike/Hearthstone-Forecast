@@ -44,7 +44,8 @@ public class GUI extends javax.swing.JFrame {
           Prediction predict;
         ArrayList<Card> read = new ArrayList<>();
         Scanner IDs;
-        JLabel[][] cards;
+                JPanel[] manaP = new JPanel[9];
+        public static JLabel[][] cards = new JLabel[9][10];
 
     public GUI(boolean no)
     {
@@ -67,9 +68,8 @@ public class GUI extends javax.swing.JFrame {
         BufferedImage image = null;
         height = Main.getHeight();
         
-        JPanel[] manaP = new JPanel[9];
+
         
-        JLabel[][] cards = new JLabel[9][10];
         
         for(int i = 0; i < 9;i++){
             for(int h = 0; h < 10;h++){
@@ -136,7 +136,7 @@ public class GUI extends javax.swing.JFrame {
   
           
           
-        
+
           
             
     //    }
@@ -161,6 +161,7 @@ public class GUI extends javax.swing.JFrame {
         //predict.disp[0][0].getImage();
         
     }
+
     
     public void updateCards() throws UnirestException, IOException {
 
@@ -181,7 +182,7 @@ public class GUI extends javax.swing.JFrame {
                         if(predict.disp[i][h] != null){
                             ResizeSet(predict.disp[i][h].getImage(), cards[i][h+1], (int) (1 * 15 * (height / 100)), (int) (.66 * (1 * 15 * (height / 100))));
                         }
-                        System.out.println("Sizing");
+                        System.out.println("Sizing" + i + "," + h);
                     }
                 }
           }

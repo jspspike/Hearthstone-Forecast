@@ -70,6 +70,7 @@ public class AddCard extends javax.swing.JFrame {
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         try {
             gui.updateCards();
+            gui.setVisible(true);
         } catch (UnirestException ex) {
             Logger.getLogger(AddCard.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
