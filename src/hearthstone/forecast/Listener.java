@@ -46,8 +46,10 @@ public class Listener {
                     eIndex = i;
                 }
                 
-                if (eIndex != 0)
+                if (eIndex != 0) {
                     played.add(new Card(line.substring(sIndex, eIndex), 1));
+                    
+                }
             }
         }
         

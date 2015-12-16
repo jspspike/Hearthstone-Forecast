@@ -15,10 +15,12 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -38,6 +40,11 @@ public class GUI extends javax.swing.JFrame {
      */
     int height = 0;
     Image car;
+    
+          Prediction predict;
+        ArrayList<Card> read = new ArrayList<>();
+        Scanner IDs;
+        JLabel[][] cards;
 
     public GUI(boolean no)
     {
@@ -121,22 +128,21 @@ public class GUI extends javax.swing.JFrame {
         }
         //manaP[0].setVisible(true);
         
-        /*
-        ArrayList<Card> swag = new ArrayList<>();
-        swag.add(new Card("CS2_031", 1));
-        swag.add(new Card("EX1_012", 1));
+  
+                      IDs = new Scanner(new File("cardIDs.txt"));
+        System.out.println("Intialized!");
+//      while (true) {
+          
+  
+          
+          
         
+          
+            
+    //    }
         
-        // WE NEED THIS WHEN THE LIBRARYS WORK ! Prediction predict = new Prediction(swag);
-        
-        for(int i = 0; i < 8;i++){
-            for(int h = 0; h < 10;h++){
-                if(predict.disp[i][h] != null){
-                ResizeSet(predict.disp[i][h].getImage(), cards[i][h+1], (int) (1 * 15 * (height / 100)), (int) (.66 * (1 * 15 * (height / 100))));
-                }
-            }
-        }
-        */
+         
+      
         
         //ImageIcon manaNum1 = new ImageIcon("assets/1.png");
         //cards[0][0].setIcon(manaNum1);
@@ -155,6 +161,30 @@ public class GUI extends javax.swing.JFrame {
         //predict.disp[0][0].getImage();
         
     }
+    
+    public void updateCards() throws UnirestException, IOException {
+
+                predict = new Prediction(read);
+        while (IDs.hasNextLine()) {
+            System.out.println("Adding Card");
+                read.add(new Card(IDs.nextLine(), 1));                
+            }
+        
+        
+                
+        System.out.println("Calculating");
+        predict = new Prediction(read);
+        
+        System.out.println("Printing!" + predict);
+        for(int i = 0; i < 8;i++)   {
+                    for(int h = 0; h < 10;h++){
+                        if(predict.disp[i][h] != null){
+                            ResizeSet(predict.disp[i][h].getImage(), cards[i][h+1], (int) (1 * 15 * (height / 100)), (int) (.66 * (1 * 15 * (height / 100))));
+                        }
+                        System.out.println("Sizing");
+                    }
+                }
+          }
     
     public void ResizeSet(String link, JLabel label, int h, int w) throws MalformedURLException, IOException{
         URL url = new URL(link);
