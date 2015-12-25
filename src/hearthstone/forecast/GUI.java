@@ -15,14 +15,17 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -37,22 +40,35 @@ public class GUI extends javax.swing.JFrame {
      */
     int height = 0;
     Image car;
-
-    public GUI(boolean no)
-    {
-        boolean yes = no;
-    }
+    
+        Prediction predict;
+        ArrayList<Card> read = new ArrayList<>();
+        Scanner IDs;
+        //Creates a the mana Jpanels for horizontal organization
+        JPanel[] manaP = new JPanel[9];
+        //Creates the cards array to store all cards in a 2d array
+        public static JLabel[][] cards = new JLabel[9][10];
 
     public GUI() throws IOException, UnirestException {
 
+        
+        //Creates a File Chooser and start a listener to read the file chosen
+        JFileChooser kfc = new JFileChooser();
+
+        if (kfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+
+                    Listener listen = new Listener( "" + kfc.getCurrentDirectory());
+                    System.out.println( "" + kfc.getCurrentDirectory());
+        }
+        
+        
         initComponents();
         
         BufferedImage image = null;
         height = Main.getHeight();
         
-        JPanel[] manaP = new JPanel[9];
-        
-        JLabel[][] cards = new JLabel[9][10];
+
+        //Fills cards with Jlabels so they can be set later
         
         for(int i = 0; i < 9;i++){
             for(int h = 0; h < 10;h++){
@@ -61,6 +77,8 @@ public class GUI extends javax.swing.JFrame {
             }
         }
         
+        
+        //Creates the structure for the Mana Panels and sets their size
         for(int i = 0; i < 9;i++)
         {
             manaP[i] = new JPanel();
@@ -69,14 +87,14 @@ public class GUI extends javax.swing.JFrame {
             manaP[i].setVisible(true);
         }
         
-        
+        //Establishes the GridLayout horizontally and vertically
         GridLayout gridY = new GridLayout(9,1);
         GridLayout gridX = new GridLayout(1,10);
         //Main.setLayout(new BorderLayout());
         Main.setLayout(gridY);
         
         
-        
+        //Adds the mana value GUI elements manually 
         ImageIcon mana0 = new ImageIcon("assets/0.png");
         cards[0][0].setIcon(mana0);
         ImageIcon mana1 = new ImageIcon("assets/1.png");
@@ -95,7 +113,7 @@ public class GUI extends javax.swing.JFrame {
         cards[7][0].setIcon(mana7);
         //ResizeSet("assets/1.png", cards[0][0], (int) (1 * 16 * (height / 100)), (int) (.66 * (1 * 16 * (height / 100))));
         
-        //loops through / adds rows
+        //Adds all the cards to the layout along with mana panels
         for(int i = 0; i < 9;i++){        
             
             for(int h = 0; h < 10;h++){
@@ -111,50 +129,42 @@ public class GUI extends javax.swing.JFrame {
         }
         //manaP[0].setVisible(true);
         
-        ArrayList<Card> swag = new ArrayList<>();
-        swag.add(new Card("CS2_031", 1));
-        swag.add(new Card("EX1_012", 1));
-        
-        
-        Prediction predict = new Prediction(swag);
-        
-        /*
-        for (int i = 0; i < 8; i++){
-            for (int j = 0; j < 10; j++) {
-                System.out.println(predict.disp[i][j]);
-            }
-        }
-        */
-        
-        
-        
-        for(int i = 0; i < 8;i++){
-            for(int h = 0; h < 10;h++){
-                if(predict.disp[i][h] != null){
-                ResizeSet(predict.disp[i][h].getImage(), cards[i][h+1], (int) (1 * 15 * (height / 100)), (int) (.66 * (1 * 15 * (height / 100))));
-                }
-            }
-        }
-        
-        
-        //ImageIcon manaNum1 = new ImageIcon("assets/1.png");
-        //cards[0][0].setIcon(manaNum1);
-        
-
-        
-        /*
-        ResizeSet("http://wow.zamimg.com/images/hearthstone/cards/enus/original/EX1_066.png", cards[7][9], (int) (1 * 15 * (height / 100)), (int) (.66 * (1 * 15 * (height / 100))));
-        ResizeSet("http://wow.zamimg.com/images/hearthstone/cards/enus/original/GVG_110.png", cards[0][0], (int) (1 * 15 * (height / 100)), (int) (.66 * (1 * 15 * (height / 100))));
-        ResizeSet("http://wow.zamimg.com/images/hearthstone/cards/enus/original/EX1_066.png", cards[2][5], (int) (1 * 15 * (height / 100)), (int) (.66 * (1 * 15 * (height / 100))));
-        */
-        //Mana0.setPreferredSize(new Dimension(500, 500));
-        //Mana0.setPreferredSize(new Dimension(1080, (int) (14 * (height / 100))));
-        
-        
-        //predict.disp[0][0].getImage();
+  
+        IDs = new Scanner(new File("cardIDs.txt"));
+        System.out.println("Intialized!");
         
     }
+
     
+    public void updateCards() throws UnirestException, IOException {
+        
+        //Grabs the url links from the predict class and resizes them to make them fit
+
+        predict = new Prediction(read);
+        
+        while (IDs.hasNextLine()) {
+            System.out.println("Adding Card");
+                read.add(new Card(IDs.nextLine(), 1));                
+            }
+        
+        
+                
+        System.out.println("Calculating");
+        predict = new Prediction(read);
+        
+        System.out.println("Printing!" + predict);
+        for(int i = 0; i < 8;i++)   {
+                    for(int h = 0; h < 10;h++){
+                        if(predict.disp[i][h] != null){
+                            ResizeSet(predict.disp[i][h].getImage(), cards[i][h+1], (int) (1 * 15 * (height / 100)), (int) (.66 * (1 * 15 * (height / 100))));
+                        }
+                        System.out.println("Sizing" + i + "," + h);
+                    }
+                }
+          }
+    //Method to take a link in string form, the jLabel / card you want to change,  and the dimensions
+	//It then puts it through the resize method that uses 2d graphics to re render the image
+
     public void ResizeSet(String link, JLabel label, int h, int w) throws MalformedURLException, IOException{
         URL url = new URL(link);
         BufferedImage image = ImageIO.read(url);

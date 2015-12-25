@@ -32,6 +32,10 @@ public final class Prediction {
         updatePlayed(played);
     }
     
+    public Card[][] getCards() {
+        return disp;
+    }
+    
     public void updatePlayed(ArrayList<Card> played) throws UnirestException {
         this.played = played;
         updateFreq();
@@ -41,6 +45,7 @@ public final class Prediction {
         decks.add(new Deck("Mage-Spring-ESL"));
         decks.add(new Deck("Legend-Warsong"));
         decks.add(new Deck("Miracle-Rouge"));
+        decks.add(new Deck("Default-Mage"));
     }
     
     private void updateFreq() throws UnirestException {
@@ -67,12 +72,12 @@ public final class Prediction {
                     if (most.cards.get(k).getMana() > 7 && i == 7)
                     {
                         disp[i][j] = most.cards.get(k);
-                        System.out.println(most.cards.remove(k));
+                        most.cards.remove(k);
                         break;
                     }
                     if(most.cards.get(k).getMana() == i) {
                         disp[i][j] = most.cards.get(k);
-                        System.out.println(most.cards.remove(k));
+                        most.cards.remove(k);
                         break;
                     }
                 }

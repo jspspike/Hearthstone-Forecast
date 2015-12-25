@@ -116,6 +116,24 @@ public class Deck {
             cards.add(new Card("EX1_129", 2));
             cards.add(new Card("CS2_072", 2));
         }
+        
+        if (name.equals("Default-Mage")) {
+            cards.add(new Card("EX1_277", 2));
+            cards.add(new Card("CS2_025", 2));
+            cards.add(new Card("CS2_023", 2));
+            cards.add(new Card("CS2_029", 2));
+            cards.add(new Card("CS2_022", 2));
+            cards.add(new Card("CS2_168", 2));
+            cards.add(new Card("CS2_172", 2));
+            cards.add(new Card("EX1_015", 2));
+            cards.add(new Card("CS2_120", 2));
+            cards.add(new Card("CS2_122", 2));
+            cards.add(new Card("CS2_124", 2));
+            cards.add(new Card("CS2_119", 2));
+            cards.add(new Card("CS2_179", 2));
+            cards.add(new Card("EX1_593", 2));
+            cards.add(new Card("CS2_200", 2));
+        }
     }
     
     
